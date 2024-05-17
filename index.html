@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Zodiac Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .zodiac-image {
+            margin-top: 20px;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chinese Zodiac Finder</h1>
+        <input type="number" id="yearInput" placeholder="Enter your birth year">
+        <button onclick="findZodiac()">Find Zodiac</button>
+        <div class="result" id="result"></div>
+        <img id="zodiacImage" class="zodiac-image" src="" alt="">
+    </div>
+
+    <script>
+        function findZodiac() {
+            const year = document.getElementById('yearInput').value;
+            if (year && !isNaN(year)) {
+                const zodiacs = [
+                    { name: 'Rat', img: 'path/to/rat.png' },
+                    { name: 'Ox', img: 'path/to/ox.png' },
+                    { name: 'Tiger', img: 'path/to/tiger.png' },
+                    { name: 'Rabbit', img: 'path/to/rabbit.png' },
+                    { name: 'Dragon', img: 'path/to/dragon.png' },
+                    { name: 'Snake', img: 'path/to/snake.png' },
+                    { name: 'Horse', img: 'path/to/horse.png' },
+                    { name: 'Goat', img: 'path/to/goat.png' },
+                    { name: 'Monkey', img: 'path/to/monkey.png' },
+                    { name: 'Rooster', img: 'path/to/rooster.png' },
+                    { name: 'Dog', img: 'path/to/dog.png' },
+                    { name: 'Pig', img: 'path/to/pig.png' }
+                ];
+                const baseYear = 1900; // Base year, 1900 is the year of the Rat
+                const zodiacIndex = (year - baseYear) % 12;
+                const zodiac = zodiacs[zodiacIndex];
+                document.getElementById('result').innerText = `Your Chinese Zodiac is: ${zodiac.name}`;
+                document.getElementById('zodiacImage').src = zodiac.img;
+                document.getElementById('zodiacImage').alt = zodiac.name;
+            } else {
+                document.getElementById('result').innerText = 'Please enter a valid year';
+                document.getElementById('zodiacImage').src = '';
+                document.getElementById('zodiacImage').alt = '';
+            }
+        }
+    </script>
+</body>
+</html>
